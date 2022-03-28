@@ -91,7 +91,7 @@ const ShipmentQuotationSchema = new mongoose.Schema({
 		type: String,
 		minlength: [3, "The minimum length required is 3"],
 		maxlength: [100, "The maximum length required is 100"],
-		required: [true, "Merrchandise is required "],
+		required: [true, "Merchandise is required "],
 	},
 	logisticstype: {
 		type: String,
