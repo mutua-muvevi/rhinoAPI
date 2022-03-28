@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { postQuotation, getAllQuotation, findQuotationByID } = require("../controller/storagequotation")
+const { postQuotation, getAllQuotation, findQuotationByID } = require("../controller/storagequotation");
 
 router.route("/post").post(postQuotation);
 
