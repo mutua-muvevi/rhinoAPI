@@ -133,12 +133,7 @@ const ShippingSchema = new mongoose.Schema({
 		required: [true, "Arrival date is required"],
 	},
 	shippersemail: {
-		type: String,
-		minlength: [3, "The minimum length required is 3"],
-		maxlength: [100, "The maximum length required is 100"],
-		match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please provide a valid email address'],
-		lowercase: true,
-		required: [true, "Shipper's email is required"],
+
 	},
 	shippersidno: {
 		type: String,
