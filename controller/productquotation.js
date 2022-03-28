@@ -1,11 +1,11 @@
-const StorageQuotation = require("../model/storagequotation");
+const ProductQuotation = require("../model/productquotation");
 const ErrorResponse = require("../utils/errorResponse");
 const sendEmail = require("../utils/sendMail");
 
 // get all quotation
 exports.getAllQuotation = async (req, res, next) => {
 	try {
-		const quotation = await StorageQuotation.find({}).sort({createdAt: -1})
+		const quotation = await ProductQuotation.find({}).sort({createdAt: -1})
 
 		res.status(200).json({
 			success: true,
@@ -19,7 +19,7 @@ exports.getAllQuotation = async (req, res, next) => {
 // find by ID
 exports.findQuotationByID = async (req, res, next) => {
 	try {
-		const quotation = await StorageQuotation.findById(req.params.id)
+		const quotation = await ProductQuotation.findById(req.params.id)
 
 		if(!quotation){
 			return next(new ErrorResponse("No quotation found with that ID", 404))
@@ -36,16 +36,17 @@ exports.findQuotationByID = async (req, res, next) => {
 
 // post an email
 exports.postQuotation = async (req, res, next) => {
-	const { title, fullnames, company, position, email, unit, weight, country, city, productname, quantity, producttype, storagecity, storagecountry, description }  = req.body 
+	const { title, fullnames, company, email, position, country, city, product, quantity, packaging, unit, weight, description }  = req.body 
 
 	try {
-		const postquotation = await StorageQuotation.create({ title, fullnames, company, position, email, unit, weight, country, city, productname, quantity, producttype, storagecity, storagecountry, description })
+		const postquotation = await ProductQuotation.create({ title, fullnames, company, email, position, country, city, product, quantity, packaging, unit, weight, description })
 		
-		const html = `
+		const message = `
 			<div>
-				<h1>${fullnames} has requested a storage quotation</h1>
-				<p>Company name: ${company}</p>
+				<h1>${fullnames} has requested a product quotation</h1>
+				<p>Product name: ${product}</p>
 				<p>Email : ${email}</p>
+				<p>Quantity : ${quantity}</p>
 				<p>Description: ${description}</p>
 				<br/>
 				<h5>Please login to view the full quotation</h5>
@@ -54,8 +55,8 @@ exports.postQuotation = async (req, res, next) => {
 
 		await sendEmail({
 			to: "josephsam046@gmail.com",
-			subject: "Some one has made an enquiry",
-			html: html
+			subject: "Someone has made a product quotation",
+			html: message
 		})
 
 		res.status(201).json({

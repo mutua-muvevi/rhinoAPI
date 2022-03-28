@@ -1,11 +1,11 @@
-const StorageQuotation = require("../model/storagequotation");
+const ShipmentQuotation = require("../model/shipmentquotation");
 const ErrorResponse = require("../utils/errorResponse");
 const sendEmail = require("../utils/sendMail");
 
 // get all quotation
 exports.getAllQuotation = async (req, res, next) => {
 	try {
-		const quotation = await StorageQuotation.find({}).sort({createdAt: -1})
+		const quotation = await ShipmentQuotation.find({}).sort({createdAt: -1})
 
 		res.status(200).json({
 			success: true,
@@ -19,7 +19,7 @@ exports.getAllQuotation = async (req, res, next) => {
 // find by ID
 exports.findQuotationByID = async (req, res, next) => {
 	try {
-		const quotation = await StorageQuotation.findById(req.params.id)
+		const quotation = await ShipmentQuotation.findById(req.params.id)
 
 		if(!quotation){
 			return next(new ErrorResponse("No quotation found with that ID", 404))
@@ -36,14 +36,14 @@ exports.findQuotationByID = async (req, res, next) => {
 
 // post an email
 exports.postQuotation = async (req, res, next) => {
-	const { title, fullnames, company, position, email, unit, weight, country, city, productname, quantity, producttype, storagecity, storagecountry, description }  = req.body 
+	const { title, firstname, lastname, email, company, position, unit, weight, producttype, fromcity, fromcountry, pieces, productname, quantity, merchandise, logisticstype, tocity, tocountry, description }  = req.body 
 
 	try {
-		const postquotation = await StorageQuotation.create({ title, fullnames, company, position, email, unit, weight, country, city, productname, quantity, producttype, storagecity, storagecountry, description })
+		const postquotation = await ShipmentQuotation.create({ title, firstname, lastname, email, company, position, unit, weight, producttype, fromcity, fromcountry, pieces, productname, quantity, merchandise, logisticstype, tocity, tocountry, description })
 		
 		const html = `
 			<div>
-				<h1>${fullnames} has requested a storage quotation</h1>
+				<h1>${firstname} has requested a shipment quotation</h1>
 				<p>Company name: ${company}</p>
 				<p>Email : ${email}</p>
 				<p>Description: ${description}</p>
