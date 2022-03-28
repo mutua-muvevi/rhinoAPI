@@ -1,5 +1,6 @@
 const ShipmentQuotation = require("../model/shipmentquotation");
 const ErrorResponse = require("../utils/errorResponse");
+const sendEmail = require("../utils/sendMail");
 
 // get all quotation
 exports.getAllQuotation = async (req, res, next) => {
@@ -40,6 +41,23 @@ exports.postQuotation = async (req, res, next) => {
 	try {
 		const postquotation = await ShipmentQuotation.create({ title, firstname, lastname, email, company, position, unit, weight, producttype, fromcity, fromcountry, pieces, productname, quantity, merchandise, logisticstype, tocity, tocountry, description })
 		
+		const html = `
+			<div>
+				<h1>${firstname} has requested a shipment quotation</h1>
+				<p>Company name: ${company}</p>
+				<p>Email : ${email}</p>
+				<p>Description: ${description}</p>
+				<br/>
+				<h5>Please login to view the full quotation</h5>
+			</div>
+		`
+
+		await sendEmail({
+			to: "josephsam046@gmail.com",
+			subject: "Some one has made an enquiry",
+			html: html
+		})
+
 		res.status(201).json({
 			success: true,
 			data: postquotation

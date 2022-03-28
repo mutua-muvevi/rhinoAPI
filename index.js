@@ -23,6 +23,7 @@ app.use("/api/quotation", require("./routes/quotation"));
 app.use("/api/storagequotation", require("./routes/storagequotation"));
 app.use("/api/shipmentquotation", require("./routes/shipmentquotation"));
 app.use("/api/productquotation", require("./routes/productquotation"));
+app.use("/api/contact", require("./routes/contact"));
 
 
 // error middle ware
