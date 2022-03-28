@@ -21,6 +21,7 @@ app.use("/api/shipping", require("./routes/shipping"));
 app.use("/api/email", require("./routes/email"));
 app.use("/api/quotation", require("./routes/quotation"));
 app.use("/api/storagequotation", require("./routes/storagequotation"));
+app.use("/api/shipmentquotation", require("./routes/shipmentquotation"));
 
 
 // error middle ware

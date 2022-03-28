@@ -98,7 +98,10 @@ const StorageQuotationSchema = new mongoose.Schema({
 		type: Date,
 		default: Date.now
 	}
-}, {timestamps: true})
+}, {
+	timestamps: true,
+	collection: "storage quotation records"
+})
 
 const StorageQuotation = mongoose.model("StorageQuotation", StorageQuotationSchema)
 module.exports = StorageQuotation

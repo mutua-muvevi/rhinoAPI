@@ -247,7 +247,10 @@ const ShippingSchema = new mongoose.Schema({
 		default: Date.now
 	},
 
-}, {timestamps: true})
+}, {
+	timestamps: true,
+	collection: "shipment records"
+})
 
 
 const Shipping = mongoose.model("shipping", ShippingSchema)
