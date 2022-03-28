@@ -25,12 +25,13 @@ exports.updateShipping = async (req, res, next) => {
 
 		
 
-		const shipping = await Shipping.findOneAndUpdate(
-			{trackno},
-			{timeevents, dateevents, currentlocation, shippingstatus, notes, number},
-			{new: true}
-		)
+		const shipping = await Shipping.findOne({trackno})
+
+		// console.log("The event array is", shipping.events)
+		shipping.events.push({ timeevents, dateevents, currentlocation, shippingstatus, notes, number})
 		
+		await shipping.save()
+
 		res.status(200).json({
 			success: true,
 			data: shipping
@@ -48,6 +49,24 @@ exports.getAllShippingRecords = async (req, res, next) => {
 			.find({})
 			.sort({createdAt: -1})
 		
+		res.status(200).json({
+			success: true,
+			data: shipping
+		})
+
+	} catch (error) {
+		next(error)
+	}
+}
+
+exports.getShippingById = async (req, res, next) => {
+	try {
+		const shipping = await Shipping.findById(req.params.id)
+
+		if (!shipping){
+			return next(new ErrorResponse("The shipping record you are looking for is not available", 400))
+		}
+
 		res.status(200).json({
 			success: true,
 			data: shipping
