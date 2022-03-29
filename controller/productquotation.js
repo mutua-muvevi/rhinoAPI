@@ -34,7 +34,7 @@ exports.findQuotationByID = async (req, res, next) => {
 	}
 }
 
-// post an email
+// post a product quotation
 exports.postQuotation = async (req, res, next) => {
 	const { title, fullnames, company, email, position, country, city, product, quantity, packaging, unit, weight, description }  = req.body 
 
@@ -62,6 +62,24 @@ exports.postQuotation = async (req, res, next) => {
 		res.status(201).json({
 			success: true,
 			data: postquotation
+		})
+	} catch (error) {
+		next(error)
+	}
+}
+
+// delete product quotation
+exports.deleteProductQuotation = async (req, res, next) => {
+	try {
+		const productQuotation = await ProductQuotation.findByIdAndDelete(req.params.id)
+
+		if(!productQuotation){
+			return next(new ErrorResponse("That product quotation could not be found", 404))
+		}
+
+		res.status(200).json({
+			success: true,
+			data: "The product quotation was deleted successfully"
 		})
 	} catch (error) {
 		next(error)

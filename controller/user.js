@@ -137,6 +137,24 @@ exports.resetpassword = async (req, res, next) => {
 
 }
 
+// deleting a user
+exports.deleteUser = async (req, res, next) => {
+	try {
+		const user = await User.findByIdAndDelete(req.params.id)
+
+		if(!user){
+			return next(new ErrorResponse("User with that ID does not exists", 404))
+		}
+
+		res.status(200).json({
+			success: true,
+			data: "User was deleted successfully"
+		})
+	} catch (error) {
+		next(error)
+	}
+}
+
 
 // send token
 const sendToken = (user, statusCode, res) => {

@@ -30,3 +30,21 @@ exports.postEmail = async (req, res, next) => {
 		next(error)
 	}
 }
+
+// delete email
+exports.deleteEmail = async (req, res, next) => {
+	try {
+		const email = await Email.findByIdAndDelete(req.params.id)
+
+		if(!email){
+			return next(new ErrorResponse("That email coul not be found", 404))
+		}
+
+		res.status(200).json({
+			success: true,
+			data: "The email was deleted successfully"
+		})
+	} catch (error) {
+		next(error)
+	}
+}

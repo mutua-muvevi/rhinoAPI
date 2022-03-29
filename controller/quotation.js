@@ -67,3 +67,21 @@ exports.postQuotation = async (req, res, next) => {
 		next(error)
 	}
 }
+
+// delete quotation
+exports.deleteQuotation = async (req, res, next) => {
+	try {
+		const quotation = await Quotation.findByIdAndDelete(req.params.id)
+
+		if(!quotation){
+			return next(new ErrorResponse("That quotation could not be found", 404))
+		}
+
+		res.status(200).json({
+			success: true,
+			data: "The quotation was deleted successfully"
+		})
+	} catch (error) {
+		next(error)
+	}
+}
