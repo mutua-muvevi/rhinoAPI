@@ -61,8 +61,7 @@ const UserSchema = new mongoose.Schema({
 	resetPasswordToken : String,
 	resetPasswordExpiry : Date
 }, {
-	timestamps: true, 
-	bufferTimeoutMS: 11000,
+	timestamps: true,
 	collection: "user",
 })
 
