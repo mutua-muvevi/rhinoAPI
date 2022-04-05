@@ -1,4 +1,5 @@
 const nodemailer = require("nodemailer");
+const logger = require("./logger");
 
 const sendEmail = (options) => {
 
@@ -21,9 +22,9 @@ const sendEmail = (options) => {
 
 	transporter.sendMail(mailOptions, (error, info) => {
 		if(error){
-			console.log(`Send Mail Error : ${error}`)
+			logger.error(`Send Mail Error : ${error}`)
 		} else {
-			console.log(`Email sent successfully`)
+			logger.info(`Email sent successfully`)
 		}
 	})
 }

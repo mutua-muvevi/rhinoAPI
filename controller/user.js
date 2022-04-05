@@ -89,7 +89,6 @@ exports.forgotPassword = async (req, res, next) => {
 		} catch (error) {
 			user.resetPasswordToken = undefined
 			user.resetPasswordExpiry = undefined
-			console.log("Conteroller error", error)
 
 			user.save()
 			return next(new ErrorResponse("Email couldn't be sent", 500))

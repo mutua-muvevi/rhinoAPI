@@ -22,11 +22,13 @@
     "express-rate-limit": "^6.3.0",
     "helmet": "^5.0.2",
     "hpp": "^0.2.3",
+    "install": "^0.13.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.8",
     "nodemailer": "^6.7.3",
     "nodemon": "^2.0.15",
-    "winston": "^3.6.0",
+    "winston": "^3.7.2",
+    "winston-mongodb": "^5.0.7",
     "xss-clean": "^0.1.1"
   }
 }

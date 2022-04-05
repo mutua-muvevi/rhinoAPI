@@ -7,14 +7,18 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const helmet = require("helmet");
 const hpp = require("hpp");
+const winston = require("winston")
+require('winston-mongodb');
 
 // constom modules import
 const connectDB = require("./config/database");
 const errorHandler = require("./middleware/error");
+const logger = require("./utils/logger")
 
 
 // runing/initialization of the imported
 const app = express()
+
 
 // initializing database
 connectDB()
@@ -52,15 +56,15 @@ app.use(errorHandler);
 
 // port connection
 const PORT = process.env.PORT || 5000
-app.listen(PORT, () => console.log(`Connected to port ${PORT}`))
+app.listen(PORT, () => logger.info(`Connected to port ${PORT}`))
 
 
 // process termination after unhandles promise rejection
-process.on("unhandledRejection", (error, promise) => {
-	if(error){
-		console.log("Unhandled Promise Rejection Error", error)
+process.on("unhandledRejection", (err, promise) => {
+	if(err){
+		logger.error("Unhandled Promise Rejection Error :", err)
 		process.exit(1)
 	} else {
-		console.log("Unhandled Promise Rejection Promise", promise)
+		logger.info("Unhandled Promise Rejection Promise :", promise)
 	}
 })
