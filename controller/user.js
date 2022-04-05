@@ -1,4 +1,4 @@
-const ErrorResponse = require("../utils/ErrorResponse");
+const ErrorResponse = require("../utils/errorResponse");
 const User = require("../model/user");
 const crypto = require("crypto");
 const sendEmail = require("../utils/sendMail");
