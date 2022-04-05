@@ -57,6 +57,9 @@ exports.updateShipping = async (req, res, next) => {
 
 		const shipping = await Shipping.findOne({trackno})
 
+		if(!shipping){
+			return next(new ErrorResponse("Item with that track number doesn't exist", 404))
+		}
 
 		shipping.events.push({ timeevents, dateevents, currentlocation, shippingstatus, notes, number})
 		

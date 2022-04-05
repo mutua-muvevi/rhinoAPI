@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "joseph muvevi",
+  "description": "Rhino john backend  developed by muvevi",
   "license": "MIT",
   "scripts": {
     "start": "node index.js",
     "server": "nodemon index.js"
+  },
+  "engines": {
+    "node": "14.17.4"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -14,10 +18,15 @@
     "crypto": "^1.0.1",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^6.3.0",
+    "helmet": "^5.0.2",
+    "hpp": "^0.2.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.8",
     "nodemailer": "^6.7.3",
     "nodemon": "^2.0.15",
-    "winston": "^3.6.0"
+    "winston": "^3.6.0",
+    "xss-clean": "^0.1.1"
   }
 }
