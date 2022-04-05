@@ -43,7 +43,7 @@ const ShippingSchema = new mongoose.Schema({
 	trackno: {
 		type: String,
 		minlength: [3, "The minimum length required is 3"],
-		maxlength: [500, "The maximum length required is 500"],
+		maxlength: [100, "The maximum length required is 100"],
 		required: [true, "Track number is a required field"],
 		unique: true
 	},
@@ -93,7 +93,7 @@ const ShippingSchema = new mongoose.Schema({
 		type: String,
 		minlength: [3, "The minimum length required is 3"],
 		maxlength: [100, "The maximum length required is 100"],
-		match: [/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/, "Please provide a valid telephone number"],
+		// match: [/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/, "Please provide a valid telephone number"],
 		required: [true, "Collector telephone number is required "],
 	},
 	itemsname: {
@@ -133,7 +133,12 @@ const ShippingSchema = new mongoose.Schema({
 		required: [true, "Arrival date is required"],
 	},
 	shippersemail: {
-
+		type: String,
+		minlength: [3, "The minimum length required is 3"],
+		maxlength: [100, "The maximum length required is 100"],
+		required: [true, "Shippers email is required"],
+		match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please provide a valid email address'],
+		lowercase: true
 	},
 	shippersidno: {
 		type: String,
@@ -145,7 +150,7 @@ const ShippingSchema = new mongoose.Schema({
 		type: String,
 		minlength: [3, "The minimum length required is 3"],
 		maxlength: [100, "The maximum length required is 100"],
-		match: [/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/, "Please provide a valid telephone number"],
+		// match: [/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/, "Please provide a valid telephone number"],
 		required: [true, "Shippers telephone number is required"],
 	},
 	shipperscompany: {
@@ -164,7 +169,7 @@ const ShippingSchema = new mongoose.Schema({
 		type: String,
 		minlength: [3, "The minimum length required is 3"],
 		maxlength: [100, "The maximum length required is 100"],
-		match: [/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/, "Please provide a valid telephone number"],
+		// match: [/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/, "Please provide a valid telephone number"],
 		required: [true, "Consign telephone number is required "],
 	},
 	consignemail: {
@@ -228,7 +233,7 @@ const ShippingSchema = new mongoose.Schema({
 		type: String,
 		minlength: [3, "The minimum length required is 3"],
 		maxlength: [100, "The maximum length required is 100"],
-		required: [true, "Item quiality is required "],
+		required: [true, "Item quliality is required "],
 	},
 	quantifiableunit: {
 		type: String,

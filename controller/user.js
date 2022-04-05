@@ -155,6 +155,35 @@ exports.deleteUser = async (req, res, next) => {
 	}
 }
 
+// fetch users
+exports.fetchAllUsers = async (req, res, next) => {
+	try {
+		const users = await User.find({isAdmin: false})
+			.sort({createdAt: -1})
+		
+		res.status(200).json({
+			success: true,
+			data: users
+		})
+	} catch (error) {
+		next(error)
+	}
+}
+
+// fetch admins
+exports.fetchAllAdmins = async (req, res, next) => {
+	try {
+		const admins = await User.find({isAdmin: true})
+			.sort({createdAt: -1})
+		
+		res.status(200).json({
+			success: true,
+			data: admins
+		})
+	} catch (error) {
+		next(error)
+	}
+}
 
 // send token
 const sendToken = (user, statusCode, res) => {
