@@ -184,6 +184,25 @@ exports.fetchAllAdmins = async (req, res, next) => {
 	}
 }
 
+// fetch single user
+exports.fetchSingleUser = async (req, res, next) => {
+	try {
+		const user = await User.findById(req.params.id)
+
+		if(!user){
+			return next(new ErrorResponse("User With that ID does not exist", 404))
+		}
+
+		res.status(200).json({
+			success: true,
+			data: user
+		})
+
+	} catch (error) {
+		next(error)
+	}
+}
+
 // send token
 const sendToken = (user, statusCode, res) => {
 	const token = user.genToken()

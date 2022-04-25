@@ -8,21 +8,21 @@ const UserSchema = new mongoose.Schema({
 	firstname: {
 		type: String,
 		minlength: [3, "The minimum length required 3"],
-		maxlength: [250, "The maximum length required 250"],
+		maxlength: [100, "The maximum length required 100"],
 		required: [true, "Firstname is required"],
 		trim: true
 	},
 	lastname: {
 		type: String,
 		minlength: [3, "The minimum length required 3"],
-		maxlength: [250, "The maximum length required 250"],
+		maxlength: [100, "The maximum length required 100"],
 		required: [true, "Lastname is required"],
 		trim: true
 	},
 	email: {
 		type: String,
 		minlength: [3, "The minimum length required 3"],
-		maxlength: [250, "The maximum length required 250"],
+		maxlength: [100, "The maximum length required 100"],
 		required: [true, "Email is required"],
 		match: [/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, "Please add a valid email"],
 		trim: true
@@ -30,22 +30,21 @@ const UserSchema = new mongoose.Schema({
 	telephone: {
 		type: String,
 		minlength: [3, "The minimum length required 3"],
-		match: [/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/, "Please add a valid phone number"],
-		maxlength: [250, "The maximum length required 250"],
+		maxlength: [100, "The maximum length required 100"],
 		required: [true, "Telephone is required"],
 		trim: true
 	},
 	city: {
 		type: String,
 		minlength: [3, "The minimum length required 3"],
-		maxlength: [250, "The maximum length required 250"],
+		maxlength: [100, "The maximum length required 100"],
 		required: [true, "City is required"],
 		trim: true
 	},
 	country: {
 		type: String,
 		minlength: [3, "The minimum length required 3"],
-		maxlength: [250, "The maximum length required 250"],
+		maxlength: [100, "The maximum length required 100"],
 		required: [true, "Country is required"],
 		trim: true
 	},
