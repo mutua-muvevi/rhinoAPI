@@ -58,7 +58,7 @@ exports.onlyAdmin = async (req, res, next) => {
             return next(new ErrorResponse("Access denied", 403))
         }
 
-        if(!admin.isAdmin){
+        if(!admin.authorization === "admin"){
             return next(new ErrorResponse("This route is meant for admins only", 401))
         }
 
