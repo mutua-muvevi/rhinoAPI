@@ -5,7 +5,7 @@ const sendEmail = require("../utils/sendMail");
 
 //resiter
 exports.register = async (req, res, next) => {
-	const { firstname, lastname, email, telephone, city, country, password, isAdmin } = req.body
+	const { firstname, lastname, email, telephone, city, country, password, authorization } = req.body
 
 	try {
 
@@ -15,7 +15,7 @@ exports.register = async (req, res, next) => {
 			return next(new ErrorResponse("A user with this email already exist", 400))
 		}
 
-		const user = await User.create({ firstname, lastname, email, telephone, city, country, password, isAdmin })
+		const user = await User.create({ firstname, lastname, email, telephone, city, country, password, authorization })
 
 		sendToken(user, 201, res)
 
@@ -157,7 +157,7 @@ exports.deleteUser = async (req, res, next) => {
 // fetch users
 exports.fetchAllUsers = async (req, res, next) => {
 	try {
-		const users = await User.find({isAdmin: false})
+		const users = await User.find({authorization: "client"})
 			.sort({createdAt: -1})
 		
 		res.status(200).json({
@@ -172,7 +172,7 @@ exports.fetchAllUsers = async (req, res, next) => {
 // fetch admins
 exports.fetchAllAdmins = async (req, res, next) => {
 	try {
-		const admins = await User.find({isAdmin: true})
+		const admins = await User.find({authorization: "admin"})
 			.sort({createdAt: -1})
 		
 		res.status(200).json({

@@ -8,14 +8,14 @@ const UserSchema = new mongoose.Schema({
 	firstname: {
 		type: String,
 		minlength: [3, "The minimum length required 3"],
-		maxlength: [100, "The maximum length required 100"],
+		maxlength: [50, "The maximum length required 50"],
 		required: [true, "Firstname is required"],
 		trim: true
 	},
 	lastname: {
 		type: String,
 		minlength: [3, "The minimum length required 3"],
-		maxlength: [100, "The maximum length required 100"],
+		maxlength: [50, "The maximum length required 50"],
 		required: [true, "Lastname is required"],
 		trim: true
 	},
@@ -29,8 +29,8 @@ const UserSchema = new mongoose.Schema({
 	},
 	telephone: {
 		type: String,
-		minlength: [3, "The minimum length required 3"],
-		maxlength: [100, "The maximum length required 100"],
+		minlength: [7, "The minimum length required 7"],
+		maxlength: [25, "The maximum length required 25"],
 		required: [true, "Telephone is required"],
 		trim: true
 	},
@@ -54,8 +54,11 @@ const UserSchema = new mongoose.Schema({
 		maxlength: [2500, "The maximum length required 2500"],
 		required: [true, "Password is required"]
 	},
-	isAdmin: {
-		type: Boolean
+	authorization: {
+		type: String,
+		minlength: [4, "The minimum length required 4"],
+		maxlength: [6, "The maximum length required 6"],
+		required: [true, "Password is required"]
 	},
 	resetPasswordToken : String,
 	resetPasswordExpiry : Date
