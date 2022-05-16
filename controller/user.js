@@ -64,7 +64,7 @@ exports.forgotPassword = async (req, res, next) => {
 		user.save()
 
 		// sending email part
-		const resetUrl = `http://localhost:3000/passwordreset/${resetToken}`
+		const resetUrl = `http://localhost:3000/auth/resetpassword/${resetToken}`
 
 		const message = `
 			<h1>You have requested a password Reset</h1>
@@ -75,7 +75,7 @@ exports.forgotPassword = async (req, res, next) => {
 		`
 
 		try {
-			await sendEmail({
+			sendEmail({
 				to: user.email,
 				subject: "You requested a password reset",
 				html: message
@@ -193,13 +193,16 @@ exports.fetchSingleUser = async (req, res, next) => {
 			return next(new ErrorResponse("User With that ID does not exist", 404))
 		}
 
+		
 		res.status(200).json({
 			success: true,
 			data: user
 		})
-
+		
+		// console.log("FETCHED USER", user)
 	} catch (error) {
-		next(error)
+		console.log(error)
+		// next(error)
 	}
 }
 
