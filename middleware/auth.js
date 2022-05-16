@@ -8,15 +8,12 @@ exports.onlyLoggedIn = async (req, res, next) => {
 
 	// cheking if there is a header with Bearers
 	const authorizationHeader = req.headers.authorization
-	console.log("AUTHORIZATION", authorizationHeader)
 
 	if(authorizationHeader && authorizationHeader.startsWith("Bearer")){
 		token = authorizationHeader.split(" ")[1]
 	}
-	console.log("THE TOKEN IS", token)
 	
 	if(!token){
-		console.log("NT ALLOWED", token)
 		return next(new ErrorResponse("You are not authorized to access this route no tkn", 401))
 	}
 
