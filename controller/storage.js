@@ -3,7 +3,7 @@ const ErrorResponse = require("../utils/errorResponse");
 
 // post storage
 exports.postStorage = async (req, res, next) => {
-	const { fullnames, email, company, shipaddress, consignfullnames, consignemail, consignaddress, consigncompany, storagecity, storagecountry, warehousetype, weight, weightunit, producttype, pieces, datein, intime, dateout, outtime, trackno, idno, quality, product, packaging, observation, collectoraddress, collectortel, collectedby, notes } = req.body
+	const { fullname, email, telephone, company, trackno, product, weight, description, storageaddress, datein, dateout, timein, timeout, notes } = req.body
 	
 	try {
 		const existingTrackNo = await Storage.findOne({trackno})
@@ -12,7 +12,7 @@ exports.postStorage = async (req, res, next) => {
 			return next(new ErrorResponse("This track number already exists, please try another", 400))
 		}
 
-		const storage = await Storage.create({ fullnames, email, company, shipaddress, consignfullnames, consignemail, consignaddress, consigncompany, storagecity, storagecountry, warehousetype, weight, weightunit, producttype, pieces, datein, intime, dateout, outtime, trackno, idno, quality, product, packaging, observation, collectoraddress, collectortel, collectedby, notes })
+		const storage = await Storage.create({ fullname, email, telephone, company, trackno, product, weight, description, storageaddress, datein, dateout, timein, timeout, notes })
 
 		res.status(201).json({
 			success: true,
@@ -25,12 +25,12 @@ exports.postStorage = async (req, res, next) => {
 }
 // update a given storage
 exports.updateStorage = async (req, res, next) => {
-	const { fullnames, email, company, shipaddress, consignfullnames, consignemail, consignaddress, consigncompany, storagecity, storagecountry, warehousetype, weight, weightunit, producttype, pieces, datein, intime, dateout, outtime, trackno, idno, quality, product, packaging, observation, collectoraddress, collectortel, collectedby, notes } = req.body
+	const { fullname, email, telephone, company, trackno, product, weight, description, storageaddress, datein, dateout, timein, timeout, notes } = req.body
 
 	try {
 		const storage = await Storage.findOneAndUpdate(
 			req.params.id,
-			{ fullnames, email, company, shipaddress, consignfullnames, consignemail, consignaddress, consigncompany, storagecity, storagecountry, warehousetype, weight, weightunit, producttype, pieces, datein, intime, dateout, outtime, trackno, idno, quality, product, packaging, observation, collectoraddress, collectortel, collectedby, notes },
+			{ fullname, email, telephone, company, trackno, product, weight, description, storageaddress, datein, dateout, timein, timeout, notes },
 			{ new: true }
 		)
 

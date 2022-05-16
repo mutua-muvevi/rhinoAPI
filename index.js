@@ -41,14 +41,17 @@ app.use(limiter);
 app.use(mongoSanitize());
 app.use(xss())
 app.use("/api/user", require("./routes/user"));
+
+app.use("/api/storage", require("./routes/storage"));
 app.use("/api/shipping", require("./routes/shipping"));
-app.use("/api/email", require("./routes/email"));
+
 app.use("/api/quotation", require("./routes/quotation"));
 app.use("/api/storagequotation", require("./routes/storagequotation"));
 app.use("/api/shipmentquotation", require("./routes/shipmentquotation"));
 app.use("/api/productquotation", require("./routes/productquotation"));
+
+app.use("/api/email", require("./routes/email"));
 app.use("/api/contact", require("./routes/contact"));
-app.use("/api/storage", require("./routes/storage"));
 
 
 // error middle ware
