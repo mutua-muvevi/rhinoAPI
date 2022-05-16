@@ -4,10 +4,10 @@ const { postShipment, getAllShippingRecords, getShippingById, updateShipping, up
 const { onlyLoggedIn, onlyAdmin } = require("../middleware/auth")
 
 router.route("/post").post(onlyAdmin, postShipment);
-router.route("/item/:id").get(onlyLoggedIn, getShippingById)
-router.route("/event/update").put(onlyAdmin, updateShipping)
-router.route("/item/update").put(onlyAdmin, updateEntireShipping)
-router.route("/all").get(onlyAdmin, getAllShippingRecords);
-router.route("/delete/:id").delete(onlyAdmin, deleteShipping)
+router.route("/item/:id").get( getShippingById)
+router.route("/event/update").put( updateShipping)
+router.route("/item/update").put( updateEntireShipping)
+router.route("/all").get( getAllShippingRecords);
+router.route("/delete/:id").delete( deleteShipping)
 
 module.exports = router

@@ -3,7 +3,7 @@ const ErrorResponse = require("../utils/errorResponse");
 
 // post
 exports.postShipment = async (req, res, next) => {
-	const { trackno, shippersfullname, departurecity, departurecountry, departuredate, consignfullnames, collectorfullname, collectoraddress, collectortel, itemsname, departuretime, arrivalcity, arrivalcountry, arrivaltime, arrivaldate, shippersemail, shippersidno, shipperstelephone, shipperscompany, shippersaddress, consigntelephone, consignemail, consigncompany, consignaddress, logisticstype, itemsweight, itemsweightunit, itemsproducttype, itemspieces, itemsquality, quantifiableunit, events } = req.body
+	const { shippersfullname, shippersemail, shipperscompany, shipperstelephone, shippersaddress, consignfullname, consignemail, consigncompany, consigntelephone, consignaddress, collectorfullname, collectoremail, collectortel, collectoraddress, trackno, itemsname, itemsweight, itemsweightunit, itemspieces, departureaddress, departureairportcode, departuredate, departuretime, arrivaladdress, arrivalairportcode, arrivaldate, arrivaltime, events }  = req.body
 
 	try {
 		const existing = await Shipping.findOne({trackno})
@@ -12,14 +12,17 @@ exports.postShipment = async (req, res, next) => {
 			return next(new ErrorResponse("That track number already exists", 400))
 		}
 
-		const shipping = await Shipping.create({ trackno, shippersfullname, departurecity, departurecountry, departuredate, consignfullnames, collectorfullname, collectoraddress, collectortel, itemsname, departuretime, arrivalcity, arrivalcountry, arrivaltime, arrivaldate, shippersemail, shippersidno, shipperstelephone, shipperscompany, shippersaddress, consigntelephone, consignemail, consigncompany, consignaddress, logisticstype, itemsweight, itemsweightunit, itemsproducttype, itemspieces, itemsquality, quantifiableunit, events })
+		const shipping = await Shipping.create({ shippersfullname, shippersemail, shipperscompany, shipperstelephone, shippersaddress, consignfullname, consignemail, consigncompany, consigntelephone, consignaddress, collectorfullname, collectoremail, collectortel, collectoraddress, trackno, itemsname, itemsweight, itemsweightunit, itemspieces, departureaddress, departureairportcode, departuredate, departuretime, arrivaladdress, arrivalairportcode, arrivaldate, arrivaltime, events } )
 
 		res.status(201).json({
 			success: true,
 			data: shipping
 		})
+
+		console.log(shipping)
 	} catch (error) {
 		next(error)
+		console.log(error)
 	}
 
 }

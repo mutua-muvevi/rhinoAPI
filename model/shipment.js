@@ -40,208 +40,193 @@ const EventSchema = new mongoose.Schema({
 
 // the shipping schema
 const ShippingSchema = new mongoose.Schema({
-	trackno: {
-		type: String,
-		minlength: [3, "The minimum length required is 3"],
-		maxlength: [100, "The maximum length required is 100"],
-		required: [true, "Track number is a required field"],
-		unique: true
-	},
 	shippersfullname: {
 		type: String,
-		minlength: [3, "The minimum length required is 3"],
-		maxlength: [100, "The maximum length required is 100"],
-		required: [true, "Shipper's fullname is required"],
-	},
-	departurecity: {
-		type: String,
-		minlength: [3, "The minimum length required is 3"],
-		maxlength: [100, "The maximum length required is 100"],
-		required: [true, "Origin city is required"],
-	},
-	departurecountry: {
-		type: String,
-		minlength: [3, "The minimum length required is 3"],
-		maxlength: [100, "The maximum length required is 100"],
-		required: [true, "Origin country is required"],
-	},
-	departuredate: {
-		type: String,
-		minlength: [3, "The minimum length required is 3"],
-		maxlength: [100, "The maximum length required is 100"],
-		required: [true, "Date of departure is required"],
-	},
-	consignfullnames: {
-		type: String,
-		minlength: [3, "The minimum length required is 3"],
-		maxlength: [100, "The maximum length required is 100"],
-		required: [true, "Consign fullname is required "],
-	},
-	collectorfullname: {
-		type: String,
-		minlength: [3, "The minimum length required is 3"],
-		maxlength: [100, "The maximum length required is 100"],
-		required: [true, "Collector fullname is required "],
-	},
-	collectoraddress: {
-		type: String,
-		minlength: [3, "The minimum length required is 3"],
-		maxlength: [100, "The maximum length required is 100"],
-		required: [true, "Collector address is required"],
-	},
-	collectortel: {
-		type: String,
-		minlength: [3, "The minimum length required is 3"],
-		maxlength: [100, "The maximum length required is 100"],
-		// match: [/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/, "Please provide a valid telephone number"],
-		required: [true, "Collector telephone number is required "],
-	},
-	itemsname: {
-		type: String,
-		minlength: [3, "The minimum length required is 3"],
-		maxlength: [100, "The maximum length required is 100"],
-		required: [true, "Item's name is required"],
-	},
-	departuretime: {
-		type: String,
-		minlength: [3, "The minimum length required is 3"],
-		maxlength: [100, "The maximum length required is 100"],
-		required: [true, "Departure time is required"],
-	},
-	arrivalcity: {
-		type: String,
-		minlength: [3, "The minimum length required is 3"],
-		maxlength: [100, "The maximum length required is 100"],
-		required: [true, "Arrival city is required"],
-	},
-	arrivalcountry: {
-		type: String,
-		minlength: [3, "The minimum length required is 3"],
-		maxlength: [100, "The maximum length required is 100"],
-		required: [true, "Arrival country is required"],
-	},
-	arrivaltime: {
-		type: String,
-		minlength: [3, "The minimum length required is 3"],
-		maxlength: [100, "The maximum length required is 100"],
-		required: [true, "Arrival time is required"],
-	},
-	arrivaldate: {
-		type: String,
-		minlength: [3, "The minimum length required is 3"],
-		maxlength: [100, "The maximum length required is 100"],
-		required: [true, "Arrival date is required"],
+		minlength: [3, "The minimum length required for shipper's fullname is 3"],
+		maxlength: [100, "The maximum length required for shipper's fullname is 100"],
+		required: [true, " is required"],
 	},
 	shippersemail: {
 		type: String,
-		minlength: [3, "The minimum length required is 3"],
-		maxlength: [100, "The maximum length required is 100"],
+		minlength: [3, "The minimum length required for shipper's email is 3"],
+		maxlength: [100, "The maximum length required for shipper's email is 100"],
 		required: [true, "Shippers email is required"],
 		match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please provide a valid email address'],
 		lowercase: true
 	},
-	shippersidno: {
+	shipperscompany: {
 		type: String,
-		minlength: [3, "The minimum length required is 3"],
-		maxlength: [100, "The maximum length required is 100"],
-		required: [true, "Shpper's ID/Passport is required"],
+		minlength: [3, "The minimum length required for shipper's company is 3"],
+		maxlength: [100, "The maximum length required for shipper's company is 100"],
+		required: [true, "Shipper's company name is required"],
 	},
 	shipperstelephone: {
 		type: String,
-		minlength: [3, "The minimum length required is 3"],
-		maxlength: [100, "The maximum length required is 100"],
-		// match: [/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/, "Please provide a valid telephone number"],
+		minlength: [3, "The minimum length required for shipper's telephone is 3"],
+		maxlength: [100, "The maximum length required for shipper's telephone is 100"],
 		required: [true, "Shippers telephone number is required"],
-	},
-	shipperscompany: {
-		type: String,
-		minlength: [3, "The minimum length required is 3"],
-		maxlength: [100, "The maximum length required is 100"],
-		required: [true, "Shipper's company name is required"],
 	},
 	shippersaddress: {
 		type: String,
-		minlength: [3, "The minimum length required is 3"],
-		maxlength: [100, "The maximum length required is 100"],
+		minlength: [3, "The minimum length required for shipper's address is 3"],
+		maxlength: [100, "The maximum length required for shipper's address is 100"],
 		required: [true, "Shippers address is required"],
 	},
-	consigntelephone: {
+
+
+	consignfullname: {
 		type: String,
-		minlength: [3, "The minimum length required is 3"],
-		maxlength: [100, "The maximum length required is 100"],
-		// match: [/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/, "Please provide a valid telephone number"],
-		required: [true, "Consign telephone number is required "],
+		minlength: [3, "The minimum length required for cosignee's fullname is 3"],
+		maxlength: [100, "The maximum length required for cosignee's fullname is 100"],
+		required: [true, "Consign fullname is required "],
 	},
 	consignemail: {
 		type: String,
-		minlength: [3, "The minimum length required is 3"],
-		maxlength: [100, "The maximum length required is 100"],
+		minlength: [3, "The minimum length required for cosignee's email is 3"],
+		maxlength: [100, "The maximum length required for cosignee's email is 100"],
 		required: [true, "Consign email is required"],
 		match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please provide a valid email address'],
 		lowercase: true
 	},
 	consigncompany: {
 		type: String,
-		minlength: [3, "The minimum length required is 3"],
-		maxlength: [100, "The maximum length required is 100"],
+		minlength: [3, "The minimum length required for cosignee's company is 3"],
+		maxlength: [100, "The maximum length required for cosignee's company is 100"],
 		required: [true, "Consign company's name is required "],
+	},
+	consigntelephone: {
+		type: String,
+		minlength: [3, "The minimum length required for cosignee's telephone is 3"],
+		maxlength: [100, "The maximum length required for cosignee's telephone is 100"],
+		required: [true, "Consign telephone number is required "],
 	},
 	consignaddress: {
 		type: String,
-		minlength: [3, "The minimum length required is 3"],
-		maxlength: [100, "The maximum length required is 100"],
+		minlength: [3, "The minimum length required for cosignee's address  is 3"],
+		maxlength: [100, "The maximum length required for cosignee's address is 100"],
 		required: [true, "Cosign address is required"],
 	},
-	// cosignidno: {
-	// 	type: String,
-	// 	minlength: [3, "The minimum length required is 3"],
-	// 	maxlength: [100, "The maximum length required is 100"],
-	// 	required: [true, "Track number "],
-	// },
-	logisticstype: {
+
+
+	
+	collectorfullname: {
 		type: String,
-		minlength: [3, "The minimum length required is 3"],
-		maxlength: [100, "The maximum length required is 100"],
-		required: [true, "Mode of transportation is required"],
+		minlength: [3, "The minimum length required for collector fullname is 3"],
+		maxlength: [100, "The maximum length required for collector fullname is 100"],
+		required: [true, "Collector fullname is required "],
+	},
+	collectoremail: {
+		type: String,
+		minlength: [3, "The minimum length required for collector email is 3"],
+		maxlength: [100, "The maximum length required for collector email is 100"],
+		required: [true, "Collector's email is required"],
+		match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please provide a valid email address'],
+		lowercase: true
+	},
+	collectortel: {
+		type: String,
+		minlength: [3, "The minimum length required for collector telephone is 3"],
+		maxlength: [100, "The maximum length required for collector telephone is 100"],
+		required: [true, "Collector telephone number is required "],
+	},
+	collectoraddress: {
+		type: String,
+		minlength: [3, "The minimum length required for collector address is 3"],
+		maxlength: [100, "The maximum length required for collector address is 100"],
+		required: [true, "Collector address is required"],
+	},
+
+
+	trackno: {
+		type: String,
+		minlength: [3, "The minimum length required for track number is 3"],
+		maxlength: [100, "The maximum length required for track number is 100"],
+		required: [true, "Track number is a required field"],
+		unique: true
+	},
+	itemsname: {
+		type: String,
+		minlength: [3, "The minimum length required for product's name  is 3"],
+		maxlength: [100, "The maximum length required for product's name is 100"],
+		required: [true, "The product's name is required"],
 	},
 	itemsweight: {
 		type: Number,
-		min: [1, "The minimum length required is 1"],
-		max: [999999999, "The maximum length required is 999999999"],
+		min: [1, "The minimum length required for product's weight is 1"],
+		max: [999999999, "The maximum length required for product's weight is 999999999"],
 		required: [true, "Item weight is required"],
 	},
 	itemsweightunit: {
 		type: String,
-		minlength: [3, "The minimum length required is 3"],
-		maxlength: [100, "The maximum length required is 100"],
+		minlength: [3, "The minimum length required for product's weight unit is 3"],
+		maxlength: [100, "The maximum length required for product's weight unit is 100"],
 		required: [true, "Item weight unit is required "],
-	},
-	itemsproducttype: {
-		type: String,
-		minlength: [3, "The minimum length required is 3"],
-		maxlength: [100, "The maximum length required is 100"],
-		required: [true, "Item product type is required"],
 	},
 	itemspieces: {
 		type: Number,
-		min: [1, "The minimum length required is 1"],
-		max: [999999999, "The maximum length required is 999999999"],
+		min: [1, "The minimum length required for item pieces is 1"],
+		max: [999999999, "The maximum length required for item pieces is 999999999"],
 		required: [true, "Pieces is required"],
 	},
 
-	itemsquality: {
+
+
+	departureaddress: {
 		type: String,
-		minlength: [3, "The minimum length required is 3"],
-		maxlength: [100, "The maximum length required is 100"],
-		required: [true, "Item quliality is required "],
+		minlength: [3, "The minimum length required for departure address is 3"],
+		maxlength: [100, "The maximum length required for departure address is 100"],
+		required: [true, "Origin Service Area address is required"],
 	},
-	quantifiableunit: {
+	departureairportcode: {
 		type: String,
-		minlength: [3, "The minimum length required is 3"],
-		maxlength: [100, "The maximum length required is 100"],
-		required: [true, "Unit name is required "],
+		minlength: [3, "The minimum length required for departure airport code is 3"],
+		maxlength: [100, "The maximum length required for departure aitport code is 100"],
+		required: [true, "Origin Area Airport code is required"],
+		uppercase: true
 	},
+	departuredate: {
+		type: String,
+		minlength: [3, "The minimum length required for departure date is 3"],
+		maxlength: [100, "The maximum length required for departure date is 100"],
+		required: [true, "Date of departure is required"],
+	},
+	departuretime: {
+		type: String,
+		minlength: [3, "The minimum length required for departure time is 3"],
+		maxlength: [100, "The maximum length required for departure time is 100"],
+		required: [true, "Departure time is required"],
+	},
+
+
+
+	arrivaladdress: {
+		type: String,
+		minlength: [3, "The minimum length required arrival address for  is 3"],
+		maxlength: [100, "The maximum length required for arrival address is 100"],
+		required: [true, "Destination Address is required"],
+	},
+	arrivalairportcode: {
+		type: String,
+		minlength: [3, "The minimum length required for arrival airport code  is 3"],
+		maxlength: [100, "The maximum length required for arrival airport code   is 100"],
+		required: [true, "Destination Address is required"],
+		uppercase: true
+	},
+	arrivaldate: {
+		type: String,
+		minlength: [3, "The minimum length required for arrival date is 3"],
+		maxlength: [100, "The maximum length required for arrival date is 100"],
+		required: [true, "Arrival date is required"],
+	},
+	arrivaltime: {
+		type: String,
+		minlength: [3, "The minimum length required for arrival time is 3"],
+		maxlength: [100, "The maximum length required for arrival time is 100"],
+		required: [true, "Arrival time is required"],
+	},
+
 	events: [EventSchema],
+
 	date: {
 		type: Date,
 		default: Date.now
