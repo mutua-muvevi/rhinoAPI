@@ -36,20 +36,21 @@ exports.findQuotationByID = async (req, res, next) => {
 
 // post an email
 exports.postQuotation = async (req, res, next) => {
-	const { fullnames, company, email, telephone, city, country, message }  = req.body 
+	const { firstname, lastname, company, email, telephone, city, country, product, message }  = req.body 
 
+	console.log("QUOTATION VALUES ARE", req.body)
 	try {
-		const postquotation = await Quotation.create({ fullnames, company, email, telephone, city, country, message })
+		const postquotation = await Quotation.create({ firstname, lastname, company, email, telephone, city, country, product, message })
 
 		const html = `
 			<div>
-				<h1>${fullnames} has requested a product quotation</h1>
+				<h1>${firstname} has requested a product quotation</h1>
 				<p>Company name: ${company}</p>
 				<p>Email : ${email}</p>
 				<p>Telephone : ${telephone}</p>
 				<p>Description: ${message}</p>
 				<br/>
-				<h5>Please login to view the full quotation</h5>
+				<h5>Please login to view the full quotation body</h5>
 			</div>
 		`
 

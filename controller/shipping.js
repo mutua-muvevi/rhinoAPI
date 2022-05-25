@@ -113,6 +113,32 @@ exports.getShippingById = async (req, res, next) => {
 	}
 }
 
+// get by track number
+exports.getShippingByTrack = async (req, res, next) => {
+	
+	const { trackno } = req.body
+
+	try {
+		if (!trackno){
+			return next(new ErrorResponse("Shipment Track number is required", 400))
+		}
+		
+		const shipping = await Shipping.findOne({ trackno })
+
+		if (!shipping){
+			return next(new ErrorResponse("No shipment with that track number!", 400))
+		}
+
+		res.status(200).json({
+			success: true,
+			data: shipping
+		})
+
+	} catch (error) {
+		next(error)
+	}
+}
+
 // delete a given shipment
 exports.deleteShipping = async (req, res, next) => {
 
