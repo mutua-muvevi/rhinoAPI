@@ -1,22 +1,27 @@
 const mongoose = require("mongoose");
 
 const QuotationSchema = new mongoose.Schema({
-	fullnames: {
+	firstname: {
 		type: String,
-		required: [true, "Fullname is required"],
-		minlength: [3, "Minimum length for email is 3"],
-		maxlength: [100, "Minimum length for email is 100"]
+		required: [true, "Firstname is required"],
+		minlength: [3, "Minimum length for firstname is 3"],
+		maxlength: [100, "Minimum length for firstname is 100"]
+	},
+	lastname: {
+		type: String,
+		required: [true, "Lastname is required"],
+		minlength: [3, "Minimum length for lastname is 3"],
+		maxlength: [100, "Minimum length for lastname is 100"]
 	},
 	company: {
 		type: String,
-		required: [true, "Company is required"],
-		minlength: [3, "Minimum length for email is 3"],
-		maxlength: [100, "Minimum length for email is 100"]
+		minlength: [3, "Minimum length for company is 3"],
+		maxlength: [100, "Minimum length for company is 100"]
 	},
 	email: {
 		type: String,
 		required: [true, "Email is required"],
-		minlength: [3, "Minimum length for email is 3"],
+		minlength: [3, "Minimum length for email is 5"],
 		maxlength: [100, "Minimum length for email is 100"],
 		match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please provide a valid email address'],
 		lowercase: true,
@@ -24,28 +29,33 @@ const QuotationSchema = new mongoose.Schema({
 	},
 	telephone: {
 		type: String,
-		minlength: [3, "The minimum length required is 3"],
-		maxlength: [100, "The maximum length required is 100"],
-		match: [/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/, "Please provide a valid telephone number"],
+		minlength: [3, "The minimum length for telephone is 3"],
+		maxlength: [100, "The maximum length for telephone is 100"],
 		required: [true, "Telephone number is required"],
 	},
 	city: {
 		type: String,
 		required: [true, "City is required"],
-		minlength: [3, "Minimum length for email is 3"],
-		maxlength: [100, "Minimum length for email is 100"]
+		minlength: [3, "Minimum length for city is 3"],
+		maxlength: [100, "Minimum length for city is 100"]
 	},
 	country: {
 		type: String,
 		required: [true, "Country is required"],
-		minlength: [3, "Minimum length for email is 3"],
-		maxlength: [100, "Minimum length for email is 100"]
+		minlength: [3, "Minimum length for country is 3"],
+		maxlength: [100, "Minimum length for country is 100"]
+	},
+	product: {
+		type: String,
+		required: [true, "Product/Service Details is required"],
+		minlength: [3, "Minimum length for product is 3"],
+		maxlength: [100, "Minimum length for product is 100"]
 	},
 	message: {
 		type: String,
 		required: [true, "Message is required"],
-		minlength: [20, "Minimum length for email is 20"],
-		maxlength: [1500, "Minimum length for email is 1500"]
+		minlength: [20, "Minimum length for message is 20"],
+		maxlength: [1000, "Minimum length for message is 1500"]
 	},
 	date: {
 		type: Date,
@@ -53,7 +63,7 @@ const QuotationSchema = new mongoose.Schema({
 	}
 }, {
 	timestamps: true,
-	collection: "general enquiries"
+	collection: "quotation"
 })
 
 const Quotation = mongoose.model("Quotation", QuotationSchema)

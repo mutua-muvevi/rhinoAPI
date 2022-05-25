@@ -14,7 +14,10 @@ const EmailSchema = new mongoose.Schema({
 		type: Date,
 		default: Date.now()
 	}
-}, {timestamps: true})
+}, {
+	timestamps: true,
+	collection: "Email Collection"
+})
 
 const Email = mongoose.model("Emails", EmailSchema);
 module.exports = Email

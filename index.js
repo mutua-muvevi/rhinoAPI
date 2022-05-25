@@ -8,7 +8,7 @@ const xss = require('xss-clean');
 const helmet = require("helmet");
 const hpp = require("hpp");
 const winston = require("winston")
-require('winston-mongodb');
+// require('winston-mongodb');
 
 // constom modules import
 const connectDB = require("./config/database");
@@ -37,7 +37,7 @@ app.use(express.json());
 app.use(cors());
 app.use(helmet());
 app.use(hpp())
-app.use(limiter);
+// app.use(limiter);
 app.use(mongoSanitize());
 app.use(xss())
 app.use("/api/user", require("./routes/user"));

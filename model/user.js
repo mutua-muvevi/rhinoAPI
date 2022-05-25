@@ -101,7 +101,7 @@ UserSchema.methods.genResetToken = function(){
 		.update(resetToken)
 		.digest("hex")
 	
-	this.resetPasswordExpiry = Date.now() + 20 * (60 * 1000)
+	this.resetPasswordExpiry = Date.now() + 120 * (60 * 1000)
 	return resetToken
 }
 

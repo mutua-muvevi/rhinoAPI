@@ -199,10 +199,8 @@ exports.fetchSingleUser = async (req, res, next) => {
 			data: user
 		})
 		
-		// console.log("FETCHED USER", user)
 	} catch (error) {
-		console.log(error)
-		// next(error)
+		next(error)
 	}
 }
 
