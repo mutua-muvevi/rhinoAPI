@@ -53,6 +53,8 @@ app.use("/api/productquotation", require("./routes/productquotation"));
 app.use("/api/email", require("./routes/email"));
 app.use("/api/contact", require("./routes/contact"));
 
+app.use("/api/blogs", require("./routes/blogs"))
+
 
 // error middle ware
 app.use(errorHandler);

@@ -157,7 +157,7 @@ exports.deleteUser = async (req, res, next) => {
 // fetch users
 exports.fetchAllUsers = async (req, res, next) => {
 	try {
-		const users = await User.find({authorization: "client"})
+		const users = await User.find()
 			.sort({createdAt: -1})
 		
 		res.status(200).json({
