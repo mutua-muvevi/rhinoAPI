@@ -36,10 +36,10 @@ const limiter = rateLimit({
 app.use(express.json());
 app.use(cors());
 app.use(helmet());
-app.use(hpp())
+app.use(hpp());
 // app.use(limiter);
 app.use(mongoSanitize());
-app.use(xss())
+app.use(xss());
 app.use("/api/user", require("./routes/user"));
 
 app.use("/api/storage", require("./routes/storage"));
@@ -53,8 +53,9 @@ app.use("/api/productquotation", require("./routes/productquotation"));
 app.use("/api/email", require("./routes/email"));
 app.use("/api/contact", require("./routes/contact"));
 
-app.use("/api/blogs", require("./routes/blogs"))
+app.use("/api/blogs", require("./routes/blogs"));
 
+app.use("/api/faq", require("./routes/faq"));
 
 // error middle ware
 app.use(errorHandler);
