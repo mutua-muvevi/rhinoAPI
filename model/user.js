@@ -86,7 +86,7 @@ UserSchema.methods.comparePasswords = async function(password){
 // generating json tokens
 UserSchema.methods.genToken = function(){
 	return jwt.sign(
-		{id: this._id},
+		{id: this._id, authorization: this.authorization},
 		process.env.JWT_SECRET,
 		{ expiresIn: process.env.JWT_EXPIRY }
 	)
@@ -101,7 +101,7 @@ UserSchema.methods.genResetToken = function(){
 		.update(resetToken)
 		.digest("hex")
 	
-	this.resetPasswordExpiry = Date.now() + 120 * (60 * 1000)
+	this.resetPasswordExpiry = Date.now() + 240 * (60 * 1000)
 	return resetToken
 }
 

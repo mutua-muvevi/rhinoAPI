@@ -18,11 +18,8 @@ exports.postShipment = async (req, res, next) => {
 			success: true,
 			data: shipping
 		})
-
-		console.log(shipping)
 	} catch (error) {
 		next(error)
-		console.log(error)
 	}
 
 }
