@@ -67,7 +67,7 @@ app.listen(PORT, () => logger.info(`Connected to port ${PORT}`))
 
 
 // process termination after unhandles promise rejection
-process.on("unhandledRejection", (err, promise) => {
+process.on("unhandledRejection", (error, promise) => {
 	if(error){
 		logger.error("Unhandled Promise Rejection Error :", error)
 		process.exit(1)
