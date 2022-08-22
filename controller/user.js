@@ -64,7 +64,7 @@ exports.forgotPassword = async (req, res, next) => {
 		user.save()
 
 		// sending email part
-		const resetUrl = `http://localhost:3000/auth/resetpassword/${resetToken}`
+		const resetUrl = `https://rhinojonprimemetals.com/auth/resetpassword/${resetToken}`
 
 		const message = `
 			<h1>You have requested a password Reset</h1>
