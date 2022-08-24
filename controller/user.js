@@ -159,7 +159,9 @@ exports.fetchAllUsers = async (req, res, next) => {
 	try {
 		const users = await User.find()
 			.sort({createdAt: -1})
-		
+			.select("-authorization -password")
+			.limit(10)
+			
 		res.status(200).json({
 			success: true,
 			data: users
@@ -174,6 +176,8 @@ exports.fetchAllAdmins = async (req, res, next) => {
 	try {
 		const admins = await User.find({authorization: "admin"})
 			.sort({createdAt: -1})
+			.select("-authorization -password")
+			.limit(10)
 		
 		res.status(200).json({
 			success: true,
@@ -188,6 +192,8 @@ exports.fetchAllAdmins = async (req, res, next) => {
 exports.fetchSingleUser = async (req, res, next) => {
 	try {
 		const user = await User.findById(req.params.id)
+			.select("-authorization -password")
+			.limit(10)
 
 		if(!user){
 			return next(new ErrorResponse("User With that ID does not exist", 404))

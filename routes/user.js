@@ -13,6 +13,7 @@ router.route("/resetpassword/:resetToken").put(resetpassword);
 // CRUD
 router.route("/users").get(onlyAdmin, fetchAllUsers);
 router.route("/admin").get(onlyAdmin, fetchAllAdmins);
+router.route("/single/:id").get(onlyAdmin, fetchSingleUser)
 router.route("/me").get(onlyAdmin, getMe, fetchSingleUser)
 // router.route("/delete/:id").delete(deleteUser);
 

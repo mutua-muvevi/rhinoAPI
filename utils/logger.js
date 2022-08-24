@@ -1,5 +1,7 @@
 const { createLogger, format, transports } = require('winston');
 
+// const transportation = new transports.MongoDB()
+
 module.exports = createLogger({
 	transports:[
 		new transports.Console({
@@ -19,17 +21,18 @@ module.exports = createLogger({
 			format.printf(info => `${info.level}: ${[info.timestamp]}: ${info.message}`),
 		)}),
 
-		// new transports.MongoDB({
-		// 	level: 'error',
-		// 	db : process.env.MONGO_URI_LOGS,
-		// 	options: {
-		// 		useUnifiedTopology: true
-		// 	},
-		// 	collection: 'Server Logs',
-		// 	format: format.combine(
-		// 		format.timestamp(),
-		// 		format.json()
-		// 	)
-		// })
+		
+		new transports.MongoDB({
+			db : process.env.MONGO_URI,
+			level: 'error',
+			options: {
+				useUnifiedTopology: true
+			},
+			collection: 'Rhinojon Logs',
+			format: format.combine(
+				format.timestamp(),
+				format.json()
+			)
+		})
 	]
 });
